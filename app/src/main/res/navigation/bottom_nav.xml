@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/allDetailsFragment">
+
+    <fragment
+        android:id="@+id/allDetailsFragment"
+        android:name="com.jasmeet.roomdb.fragments.AllDetailsFragment"
+        android:label="fragment_all_details"
+        tools:layout="@layout/fragment_all_details" >
+        <action
+            android:id="@+id/action_allDetailsFragment_to_savedDetailsFragment"
+            app:destination="@id/savedDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savedDetailsFragment"
+        android:name="com.jasmeet.roomdb.fragments.SavedDetailsFragment"
+        android:label="fragment_saved_details"
+        tools:layout="@layout/fragment_saved_details" />
+</navigation>
