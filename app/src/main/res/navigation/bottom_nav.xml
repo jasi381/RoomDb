@@ -40,5 +40,8 @@
         <argument
             android:name="post"
             app:argType="com.jasmeet.roomdb.models.PostsItem" />
+        <action
+            android:id="@+id/action_postDetailsFragment_to_allDetailsFragment"
+            app:destination="@id/allDetailsFragment" />
     </fragment>
 </navigation>

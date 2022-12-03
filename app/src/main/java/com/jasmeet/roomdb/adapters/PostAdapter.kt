@@ -17,7 +17,7 @@ import com.jasmeet.roomdb.fragments.AllDetailsFragmentDirections
 import com.jasmeet.roomdb.fragments.PostDetailsFragment
 import com.jasmeet.roomdb.models.PostsItem
 
-class PostAdapter(private val mContext: Context, private val mPosts : MutableList<PostsItem>)
+class PostAdapter(private val mContext: Context, private val mPosts : ArrayList<PostsItem>)
     :RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     inner class PostViewHolder(view: View):ViewHolder(view){

@@ -52,7 +52,7 @@ class SavedDetailsFragment : Fragment() {
                     }
 
                     binding.progressBar2.visibility = View.GONE
-                    binding.recyclerView.adapter = PostAdapter(requireContext(),watchListItem)
+                    binding.recyclerView.adapter = PostAdapter(requireContext(),watchListItem as ArrayList<PostsItem>)
 
                 }
             }

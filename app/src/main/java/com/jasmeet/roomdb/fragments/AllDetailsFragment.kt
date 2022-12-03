@@ -41,7 +41,7 @@ class AllDetailsFragment : Fragment() {
             ) {
                 val postsList = response.body()
                 binding.progressBar.visibility = View.GONE
-                postAdapter = PostAdapter(requireContext(),postsList as MutableList<PostsItem>)
+                postAdapter = PostAdapter(requireContext(),postsList as ArrayList<PostsItem>)
                 binding.rvAllPosts.adapter = postAdapter
             }
 

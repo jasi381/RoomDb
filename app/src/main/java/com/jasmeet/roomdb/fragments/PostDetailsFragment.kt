@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -41,6 +42,10 @@ class PostDetailsFragment : Fragment() {
         binding.tvTitle.text = title
         binding.tvUserId.text = userId.toString()
 
+        binding.backBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postDetailsFragment_to_allDetailsFragment)
+        }
+
         return binding.root
 
     }
@@ -61,14 +66,14 @@ class PostDetailsFragment : Fragment() {
         binding.fav.setOnClickListener {
             watchListIsChecked =
                 if (!watchListIsChecked){
-                    if(!watchList!!.contains(data.body)){
-                        watchList!!.add(data.body)
+                    if(!watchList!!.contains(data.id.toString())){
+                        watchList!!.add(data.id.toString())
                     }
                     binding.fav.setImageResource(R.drawable.star)
                     true
                 }else{
-                    if(watchList!!.contains(data.body)){
-                        watchList!!.remove(data.body)
+                    if(watchList!!.contains(data.id.toString())){
+                        watchList!!.remove(data.id.toString())
                     }
                     binding.fav.setImageResource(R.drawable.star_outline)
                     false
