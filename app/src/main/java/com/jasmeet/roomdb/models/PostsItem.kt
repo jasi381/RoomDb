@@ -1,14 +1,23 @@
 package com.jasmeet.roomdb.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Entity(tableName = "posts")
 
 data class PostsItem(
-    val body: String?,
-    @PrimaryKey
+    val body: String,
     val id: Int,
-    val title: String?,
-    val userId: Int?
-)
+    val title: String,
+    val userId: Int
+): Serializable {
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+
+    override fun toString(): String {
+        return super.toString()
+    }
+}

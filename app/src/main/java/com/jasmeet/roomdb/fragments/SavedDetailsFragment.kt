@@ -31,36 +31,36 @@ class SavedDetailsFragment : Fragment() {
         _binding = FragmentSavedDetailsBinding.inflate(layoutInflater)
         readData()
 
-            val resp = RetrofitService.retrofitInstance.getPost()
+        val resp = RetrofitService.retrofitInstance.getPost()
 
-            resp.enqueue(object : Callback<List<PostsItem>?> {
-                override fun onResponse(
-                    call: Call<List<PostsItem>?>,
-                    response: Response<List<PostsItem>?>
-                ) {
-                    val res = response.body()
-                    if (res !=null){
-                        watchListItem = ArrayList()
-                            watchList.clear()
+        resp.enqueue(object : Callback<List<PostsItem>?> {
+            override fun onResponse(
+                call: Call<List<PostsItem>?>,
+                response: Response<List<PostsItem>?>
+            ) {
+                val res = response.body()
+                if (res !=null){
+                    watchListItem = ArrayList()
+                    watchList.clear()
 
-                        for (watchData in watchList){
-                            for (item in res){
-                                if (item.id.toString() == watchData){
-                                    watchListItem.add(item)
-                                }
+                    for (watchData in watchList){
+                        for (item in res){
+                            if (item.id.toString() == watchData){
+                                watchListItem.add(item)
                             }
                         }
-
-                        binding.progressBar2.visibility = View.GONE
-                        binding.recyclerView.adapter = PostAdapter(requireContext(),watchListItem)
-
                     }
-                }
 
-                override fun onFailure(call: Call<List<PostsItem>?>, t: Throwable) {
-                    Toast.makeText(requireContext(),t.message.toString(),Toast.LENGTH_SHORT).show()
+                    binding.progressBar2.visibility = View.GONE
+                    binding.recyclerView.adapter = PostAdapter(requireContext(),watchListItem)
+
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<List<PostsItem>?>, t: Throwable) {
+                Toast.makeText(requireContext(),t.message.toString(),Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
 
@@ -71,8 +71,10 @@ class SavedDetailsFragment : Fragment() {
         val sharedPreferences = requireContext().getSharedPreferences("watchlist", Context.MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("watchlist",ArrayList<String>().toString())
-        val type = object : TypeToken<ArrayList<String>>() {}.type
+        val type = object : TypeToken<ArrayList<String>>(){}.type
+
         watchList = gson.fromJson(json,type)
+
     }
 
 }

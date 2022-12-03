@@ -18,28 +18,28 @@ class PostDetailsFragment : Fragment() {
 
     private lateinit var _binding: FragmentPostDetailsBinding
     private val binding get() = _binding
+    private val item : PostDetailsFragmentArgs by navArgs()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPostDetailsBinding.inflate(layoutInflater)
-
-
-        val bundle = arguments
-        val id = bundle?.getString("id")
-        val userId = bundle?.getString("userId")
-        val title = bundle?.getString("title")
-        val body = bundle?.getString("body")
-
-        binding.tvBody.text = body
-        binding.tvId.text = id
-        binding.tvTitle.text = title
-        binding.tvUserId.text = userId
-
-        val data :PostsItem = PostsItem(id = id!!.toInt(),userId = userId!!.toInt(),title = title,body = body)
+        val data:PostsItem = item.post
 
         addToWatchlist(data)
+
+        val id = PostDetailsFragmentArgs.fromBundle(requireArguments()).post.id
+        val userId = PostDetailsFragmentArgs.fromBundle(requireArguments()).post.userId
+        val title = PostDetailsFragmentArgs.fromBundle(requireArguments()).post.title
+        val body = PostDetailsFragmentArgs.fromBundle(requireArguments()).post.body
+
+        binding.tvBody.text = body
+        binding.tvId.text = id.toString()
+        binding.tvTitle.text = title
+        binding.tvUserId.text = userId.toString()
 
         return binding.root
 
@@ -51,7 +51,7 @@ class PostDetailsFragment : Fragment() {
     private fun addToWatchlist(data: PostsItem) {
         readData()
 
-        watchListIsChecked = if (watchList!!.contains(data.id.toString())){
+        watchListIsChecked = if (watchList!!.contains(data.body)){
             binding.fav.setImageResource(R.drawable.star)
             true
         }else{
@@ -61,37 +61,40 @@ class PostDetailsFragment : Fragment() {
         binding.fav.setOnClickListener {
             watchListIsChecked =
                 if (!watchListIsChecked){
-                    if(watchList!!.contains(data.id.toString())){
-                        watchList!!.add(data.id.toString())
+                    if(!watchList!!.contains(data.body)){
+                        watchList!!.add(data.body)
                     }
-                    storeData()
                     binding.fav.setImageResource(R.drawable.star)
                     true
                 }else{
+                    if(watchList!!.contains(data.body)){
+                        watchList!!.remove(data.body)
+                    }
                     binding.fav.setImageResource(R.drawable.star_outline)
-                    watchList!!.remove(data.id.toString())
-                    storeData()
                     false
                 }
+            storeData()
         }
     }
 
     private fun storeData(){
-        val sharedPreferences = requireContext().getSharedPreferences("watchlist",Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext().getSharedPreferences("watchlist", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val gson = Gson()
         val json = gson.toJson(watchList)
-        editor.putString("watchlist", json)
+        editor.putString("watchlist",json)
         editor.apply()
 
     }
 
     private fun readData() {
-        val sharedPreferences = requireContext().getSharedPreferences("watchlist",Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext().getSharedPreferences("watchlist", Context.MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPreferences.getString("watchlist",ArrayList<String>().toString())
-        val type = object : TypeToken<ArrayList<String>>() {}.type
+        val type = object : TypeToken<ArrayList<String>>(){}.type
+
         watchList = gson.fromJson(json,type)
+
     }
 
 

@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.jasmeet.roomdb.R
 import com.jasmeet.roomdb.activities.MainActivity
 import com.jasmeet.roomdb.databinding.ItemPostBinding
+import com.jasmeet.roomdb.fragments.AllDetailsFragment
+import com.jasmeet.roomdb.fragments.AllDetailsFragmentDirections
 import com.jasmeet.roomdb.fragments.PostDetailsFragment
 import com.jasmeet.roomdb.models.PostsItem
 
@@ -36,19 +40,10 @@ class PostAdapter(private val mContext: Context, private val mPosts : MutableLis
 
         holder.itemView.setOnClickListener {
 
-            val mFragmentManager = (mContext as MainActivity).supportFragmentManager
-            val mFragmentTransaction = mFragmentManager.beginTransaction()
-            val mPostDetailsFragment = PostDetailsFragment()
-
-            val mBundle = Bundle()
-
-            mBundle.putString("title",item.title)
-            mBundle.putString("body",item.body)
-            mBundle.putString("userId",item.userId.toString())
-            mBundle.putString("id",item.id.toString())
-
-            mPostDetailsFragment.arguments = mBundle
-            mFragmentTransaction.replace(R.id.frameLayout,mPostDetailsFragment).addToBackStack(null).commit()
+            //pass the data to the fragment using safe args
+            val action = AllDetailsFragmentDirections.actionAllDetailsFragmentToPostDetailsFragment(item)
+            val navController: NavController = Navigation.findNavController(it)
+            navController.navigate(action)
         }
     }
 

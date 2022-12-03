@@ -13,10 +13,32 @@
         <action
             android:id="@+id/action_allDetailsFragment_to_savedDetailsFragment"
             app:destination="@id/savedDetailsFragment" />
+        <action
+            android:id="@+id/action_allDetailsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedDetailsFragment"
         android:name="com.jasmeet.roomdb.fragments.SavedDetailsFragment"
         android:label="fragment_saved_details"
-        tools:layout="@layout/fragment_saved_details" />
+        tools:layout="@layout/fragment_saved_details" >
+        <action
+            android:id="@+id/action_savedDetailsFragment_to_allDetailsFragment"
+            app:destination="@id/allDetailsFragment" />
+        <argument
+            android:name="post"
+            app:argType="com.jasmeet.roomdb.models.PostsItem" />
+        <action
+            android:id="@+id/action_savedDetailsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailsFragment"
+        android:name="com.jasmeet.roomdb.fragments.PostDetailsFragment"
+        android:label="fragment_post_details"
+        tools:layout="@layout/fragment_post_details" >
+        <argument
+            android:name="post"
+            app:argType="com.jasmeet.roomdb.models.PostsItem" />
+    </fragment>
 </navigation>
