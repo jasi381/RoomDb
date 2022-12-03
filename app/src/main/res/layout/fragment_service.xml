@@ -8,12 +8,16 @@
     android:background="#ececec"
     tools:context=".fragments.ServiceFragment">
 
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Click here to continue"
+        android:padding="10dp"
+        app:backgroundTint="#023047"
+        android:textSize="15sp"
+        android:textColor="#fefae0"
+        app:rippleColor="#ffb703"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

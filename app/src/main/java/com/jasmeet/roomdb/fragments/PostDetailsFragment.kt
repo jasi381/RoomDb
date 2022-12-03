@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -66,16 +67,18 @@ class PostDetailsFragment : Fragment() {
         binding.fav.setOnClickListener {
             watchListIsChecked =
                 if (!watchListIsChecked){
-                    if(!watchList!!.contains(data.id.toString())){
-                        watchList!!.add(data.id.toString())
+                    if(!(watchList!!.contains(data.body))){
+                        watchList!!.add(data.body)
                     }
                     binding.fav.setImageResource(R.drawable.star)
+                    Toast.makeText(requireContext(),"Added to watchlist",Toast.LENGTH_SHORT).show()
                     true
                 }else{
-                    if(watchList!!.contains(data.id.toString())){
-                        watchList!!.remove(data.id.toString())
+                    if(watchList!!.contains(data.body)){
+                        watchList!!.remove(data.body)
                     }
                     binding.fav.setImageResource(R.drawable.star_outline)
+                    Toast.makeText(requireContext(),"Removed from watchlist",Toast.LENGTH_SHORT).show()
                     false
                 }
             storeData()

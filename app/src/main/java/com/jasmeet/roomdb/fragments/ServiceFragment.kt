@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.jasmeet.roomdb.R
 import com.jasmeet.roomdb.databinding.FragmentServiceBinding
 
 class ServiceFragment : Fragment() {
@@ -25,7 +27,10 @@ class ServiceFragment : Fragment() {
             val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
             startActivity(intent)
         }
+
+
         return binding.root
+
     }
 
 }

@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_baseline_description_24"
         android:iconTint="@color/black"/>
 
-    <item android:id="@+id/savedDetailsFragment"
-        android:title="Favourites"
-        android:icon="@drawable/ic_baseline_favorite_24"
+    <item android:id="@+id/serviceFragment"
+        android:title="Services"
+        android:icon="@drawable/ic_baseline_miscellaneous_services_24"
         android:iconTint="@color/red"/>
 
 

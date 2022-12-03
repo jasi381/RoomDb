@@ -28,10 +28,6 @@ class AllDetailsFragment : Fragment() {
     ): View? {
         _binding = FragmentAllDetailsBinding.inflate(layoutInflater)
 
-        binding.lol.setOnClickListener {
-            findNavController().navigate(R.id.action_allDetailsFragment_to_serviceFragment)
-        }
-
         getPosts()
         return binding.root
     }
