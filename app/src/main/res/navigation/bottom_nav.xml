@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_allDetailsFragment_to_postDetailsFragment"
             app:destination="@id/postDetailsFragment" />
+        <action
+            android:id="@+id/action_allDetailsFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedDetailsFragment"
@@ -44,4 +47,9 @@
             android:id="@+id/action_postDetailsFragment_to_allDetailsFragment"
             app:destination="@id/allDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.jasmeet.roomdb.fragments.ServiceFragment"
+        android:label="fragment_service"
+        tools:layout="@layout/fragment_service" />
 </navigation>
