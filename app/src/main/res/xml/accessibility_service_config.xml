@@ -4,7 +4,7 @@
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFlags="flagDefault"
     android:accessibilityFeedbackType="feedbackSpoken"
-    android:notificationTimeout="5"
+    android:notificationTimeout="5000"
     android:canRetrieveWindowContent="true"
     android:settingsActivity="com.example.android.accessibility.ServiceSettingsActivity"
     />

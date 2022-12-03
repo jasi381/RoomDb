@@ -43,9 +43,9 @@ class MyAccessibilityService :AccessibilityService() {
         else{
             //Toast.makeText(this,"WhatsApp is not opened",Toast.LENGTH_SHORT).show()
             Log.d("whatsaopp", "onAccessibilityEvent: WhatsApp is not opened")
-            Toast.makeText(this,"WhatsApp is not opened",Toast.LENGTH_SHORT).show()
-
-            Toast.makeText(applicationContext,"WhatsApp is not opened",Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this,"WhatsApp is not opened",Toast.LENGTH_SHORT).show()
+//
+//            Toast.makeText(applicationContext,"WhatsApp is not opened",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -64,7 +64,7 @@ class MyAccessibilityService :AccessibilityService() {
 
         info.feedbackType = AccessibilityServiceInfo.FEEDBACK_SPOKEN
 
-        info.notificationTimeout = 2
+        info.notificationTimeout = 100
 
         this.serviceInfo = info
 
